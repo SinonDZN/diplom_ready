@@ -1,0 +1,530 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ dats.name }}
+{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+    <main>
+        <div nope class="alert alert-danger alert-dismissible d-none" role="alert"
+             style="position: fixed; z-index: 999999;left: 43%; top: 90%">
+            <div>Товар уже в корзине!</div>
+            <button clsbtn1 type="button" class="btn-close" style=""></button>
+        </div>
+        <div class="container after-good">
+            {% if 'macbooks' == dats.kind %}
+                <div class="text10">
+                    <a href="/">Главная</a> > <a href="/katalog">Каталог</a> > <a href="/goods/macbooks">MacBooks</a>
+                    > {{ dats.name }}
+                </div>
+            {% elif 'iphones' == dats.kind %}
+                <div class="text10">
+                    <a href="/">Главная</a> > <a href="/katalog">Каталог</a> > <a href="/goods/iphones">iPhone</a>
+                    > {{ dats.name }}
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="text10">
+                    <a href="/">Главная</a> > <a href="/katalog">Каталог</a> > <a href="/goods/airpods">AirPods</a>
+                    > {{ dats.name }}
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="text10">
+                    <a href="/">Главная</a> > <a href="/katalog">Каталог</a> > <a href="/goods/ipads">iPad</a>
+                    > {{ dats.name }}
+                </div>
+            {% endif %}
+        </div>
+        <div alerta class="alert alert-success alert-dismissible d-none" role="alert"
+             style="position: fixed; z-index: 999999;left: 42%; top: 90%">
+            <div>Товар добавлен в корзину!</div>
+            <button clsbtn2 type="button" class="btn-close" style=""></button>
+        </div>
+        <div class="container">
+            <div class="item">
+                <div class="d-md-flex w-10 my-md-3 ps-md-3">
+                    <div class="my-3 py-3">
+                        {% for index in range(dats_image|length) %}
+                            <div class="carousel-item{% if index == 0 %} active{% endif %}">
+                                <div class="img">
+                                    <img kek src="{{ url_for('static', filename=dats_image[index]) }}"
+                                         style="width: 450px; height: 450px;">
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                    <div class=" text-left overflow-hidden">
+                        <div class="my-3 p-3">
+                            <h2 class="name text-left">{{ dats.name }}</h2>
+                            <p3 class="text-left"><img src="{{ url_for('static', filename='img/icons/apple.png') }}"
+                                                       style="height: 17px;width: 13px; margin-right: 3px;margin-bottom: 5px">Официальная
+                                гарантия Apple на 1 год.
+                            </p3>
+                            <p class="text-left" style="margin-bottom: 15px">Доступно в рассрочку. Доступно в
+                                trade-in.</p>
+                            <br>
+                            {% if other_goods|length > 1 %}
+                                <h3 class="display-8">Другие цвета</h3>
+                                {% for el in other_goods %}
+                                    {% if el.shortname != dats.shortname %}
+                                        <a href="/goods/{{ el.kind }}/{{ el.shortname }}/"
+                                           class="btn btn-outline-warning text-black"
+                                           style="margin-bottom: 7px">{{ el.color }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                                <br>
+                                <br>
+                            {% endif %}
+
+                            <p class="text-left" style="margin-bottom: 15px">{{ dats.info }}.</p>
+                            <h3 class="price display-8">{{ dats.price }} ₽</h3>
+                            <p class="text-left" style="margin-bottom: 15px; font-size: 14px; font-weight: 500">Нашли
+                                дешевле? Снизим цену.</p>
+                            <a data-cart class="shine-button">Добавить в корзину</a>
+                            <p class="text-left" style="margin-bottom: 15px; font-size: 14px; font-weight: 500"><img
+                                    src="{{ url_for('static', filename='img/icons/3.png') }}"
+                                    style="height: 20px;width: 20px; margin-right: 5px">Доступна
+                                бесплатная экспресс-доставка за 1 час по Новосибирску.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container after-good">
+            {% if '14 pro max' == dats.model %}
+                <img src="{{ url_for('static', filename= '/img/promo_iphone.png') }}">
+            {% elif 'macbooks' == dats.kind %}
+                <img src="{{ url_for('static', filename= '/img/for_mac/1.jpg') }}">
+                <img src="{{ url_for('static', filename= '/img/for_mac/2.jpg') }}">
+            {% elif 'prov2' == dats.model %}
+                <img src="{{ url_for('static', filename= '/img/for_airpodspro/1.png') }}">
+            {% elif 'ipads' == dats.kind %}
+                <img src="{{ url_for('static', filename= '/img/for_ipad/1.png') }}">
+                <img src="{{ url_for('static', filename= '/img/for_ipad/2.png') }}">
+                <img src="{{ url_for('static', filename= '/img/for_ipad/3.png') }}">
+                <img src="{{ url_for('static', filename= '/img/for_ipad/4.png') }}">
+                <img src="{{ url_for('static', filename= '/img/for_ipad/5.png') }}">
+                <img src="{{ url_for('static', filename= '/img/for_ipad/6.png') }}">
+            {% endif %}
+        </div>
+        <div class="container after-good">
+            {% if '13' == dats.model %}
+                <img src="{{ url_for('static', filename= '/img/for_iphone13/1.png') }}">
+            {% elif '3' == dats.model %}
+                <img src="{{ url_for('static', filename= '/img/for_airpods3/1.png') }}">
+
+            {% endif %}
+        </div>
+        <br>
+        <div class="container after-good" style="overflow: hidden;">
+            <div class="preftext1">
+                <p class="text-left"><strong>Характеристики</strong></p>
+            </div>
+            <div class="preftext2">
+                <p class="text-left"><strong>Основные характеристики</strong></p>
+            </div>
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Серия</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Серия</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Серия</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Тип наушников</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.series }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.series }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.series }}</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.series }}</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Airpods.type }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Память</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Память</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Память</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext3">
+                    <p class="text-left"><strong>Активное шумоподавление</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.memory }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.memory }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.memory }}</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.memory }}</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Airpods.noise }}</strong></p>
+                </div>
+            {% endif %}
+
+            <div class="preftext6">
+                <p class="text-right" style="text-align: center"><strong>Цвет</strong></p>
+            </div>
+            <div class="preftext4">
+                <p class="text-right" style="text-align: right"><strong>{{ dats.color }}</strong></p>
+            </div>
+            {% if 'macbooks' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-right" style="text-align: center"><strong>Объем ОЗУ</strong></p>
+                </div>
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.ram }}</strong></p>
+                </div>
+            {% endif %}
+
+            <br>
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Процессор</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Процессор</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Процессор</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Подключение</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext7">
+                    <p class="text-left"><strong>Процессор</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext7">
+                    <p class="text-left"><strong>Процессор</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext7">
+                    <p class="text-left"><strong>Процессор</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext10">
+                    <p class="text-left"><strong>Беспроводное подключение</strong></p>
+                </div>
+            {% endif %}
+
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.cpu }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.cpu }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.cpu }}</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.cpu }}</strong></p>
+                </div>
+            {% elif 'airpods' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Airpods.bluetooth }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'airpods' == dats.kind %}
+                <div class="preftext10">
+                    <p class="text-right" style="text-align: center"><strong>Время работы(воспроизведение)</strong>
+                    </p>
+                </div>
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Airpods.hours }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'macbooks' == dats.kind %}
+                <div class="preftext7">
+                    <p class="text-right" style="text-align: center"><strong>Количество ядер процессора</strong></p>
+                </div>
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.cpu_cores }}</strong></p>
+                </div>
+                <div class="preftext6">
+                    <p class="text-right" style="text-align: center"><strong>Количество ядер графического
+                        процессора</strong></p>
+                </div>
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.gpu_cores }}</strong></p>
+                </div>
+            {% endif %}
+
+            <br>
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Дисплей</strong></p>
+                </div>
+                <div class="preftext8">
+                    <p class="text-left"><strong>Диагональ</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Дисплей</strong></p>
+                </div>
+                <div class="preftext8">
+                    <p class="text-left"><strong>Диагональ</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext2">
+                    <p class="text-left"><strong>Память</strong></p>
+                </div>
+                <div class="preftext9">
+                    <p class="text-left"><strong>Тип ОЗУ</strong></p>
+                </div>
+            {% endif %}
+
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.diagonal }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.diagonal }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.diagonal }}</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.ram_type }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones'== dats.kind %}
+                <div class="preftext8">
+                    <p class="text-center"><strong>Разрешение</strong></p>
+                </div>
+            {% elif 'ipads'== dats.kind %}
+                <div class="preftext8">
+                    <p class="text-center"><strong>Разрешение</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext9">
+                    <p class="text-center"><strong>Макс. объем памяти</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.resolution }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.resolution }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.resolution }}</strong></p>
+                </div>
+            {% elif 'macbooks' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Mac.ram_max }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Яркость</strong></p>
+                </div>
+            {% endif %}
+            {% if 'ipads' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Яркость</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.brightness }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.brightness }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.brightness }}</strong></p>
+                </div>
+
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Контрастность</strong></p>
+                </div>
+            {% endif %}
+            {% if 'ipads' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Контрастность</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.contrast }}</strong></p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.contrast }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.contrast }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Плотность пикселей</strong></p>
+                </div>
+            {% endif %}
+            {% if 'ipads' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Плотность пикселей</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.pixel_density }}</strong>
+                    </p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.pixel_density }}</strong>
+                    </p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.pixel_density }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Тип дисплея</strong></p>
+                </div>
+            {% endif %}
+            {% if 'ipads' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Тип дисплея</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone14pm.display_type }}</strong>
+                    </p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Iphone13.display_type }}</strong></p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.display_type }}</strong></p>
+                </div>
+            {% endif %}
+
+            {% if 'iphones' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Технологии дисплея</strong></p>
+                </div>
+            {% endif %}
+            {% if 'ipads' == dats.kind %}
+                <div class="preftext6">
+                    <p class="text-center"><strong>Технологии дисплея</strong></p>
+                </div>
+            {% endif %}
+            {% if '14 pro max' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right">
+                        <strong>{{ Iphone14pm.display_technologies }}</strong>
+                    </p>
+                </div>
+            {% elif '13' == dats.model %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right">
+                        <strong>{{ Iphone13.display_technologies }}</strong>
+                    </p>
+                </div>
+            {% elif 'ipads' == dats.kind %}
+                <div class="preftext4">
+                    <p class="text-right" style="text-align: right"><strong>{{ Ipad.display_technologies }}</strong>
+                    </p>
+                </div>
+            {% endif %}
+
+            <div class="upbtn">
+                <a href="#top" id="anchButton"
+                   style="text-align: center;font-size: 37px; font-weight: 150; margin-left: 40px">^</a>
+            </div>
+            <button class="btn btn-light btn-sm d-none" type="button" data-action="minus"><</button>
+            <button class="data-counter btn btn-light btn-sm d-none" type="button" data-counter="">1</button>
+            <button class="btn btn-light btn-sm d-none" type="button" data-action="plus">></button>
+            <script src="{{ url_for('static', filename='total.js') }}"></script>
+            <script src="{{ url_for('static', filename='cart_good.js') }}"></script>
+            <script src="{{ url_for('static', filename='counter_good.js') }}"></script>
+{% endblock %}

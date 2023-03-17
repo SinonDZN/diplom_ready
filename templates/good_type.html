@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Товары
+{% endblock %}
+
+{% block body %}
+    <div nope class="alert alert-danger alert-dismissible d-none" role="alert" style="position: fixed; z-index: 999999;left: 43%; top: 90%">
+        <div>Товар уже в корзине!</div>
+    <button clsbtn1 type="button" class="btn-close"  style=""></button>
+    </div>
+      <div alerta class="alert alert-success alert-dismissible d-none" role="alert"
+         style="position: fixed; z-index: 999999;left: 42%">
+        <div>Товар добавлен в корзину!</div>
+        <button clsbtn2 type="button"  class="btn-close" data-bs-dismiss="alert" aria-label="Close" style=""></button>
+    </div>
+    <div class="text">
+        <p class="text-center"><strong>{{ data.price }}</strong></p>
+    </div>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+
+    <main>
+        <div class="text">
+            <p class="text-center"><strong>
+                {% if good_type == 'iphones' %}
+                    iPhone
+                {% elif good_type == 'macbooks' %}
+                    MacBook
+                {% elif good_type == 'airpods' %}
+                    AirPods
+                {% elif good_type == 'ipads' %}
+                    iPad
+                {% endif %}
+            </strong></p>
+        </div>
+        <br>
+        <div class="row row-cols-1 row-cols-md-6 g-1" style="margin-left: 170px;">
+            {% for el in data %}
+                <div class="col">
+                    <div class="card h-100 d-flex align-items-stretch"
+                         style="position: relative; padding-bottom:1px; height: 10px;">
+                         <form method="GET">
+                            <a href="/goods/{{ el.kind }}/{{ el.shortname }}/"> <img
+                                src="{{ url_for('static', filename=el.image) }}"
+                                class="img card-img-top" alt="..."></a>
+                        <div class="card-body text-center">
+                            <a href="/goods/{{ el.kind }}/{{ el.shortname }}/"
+                               style="text-decoration: none; color: black;">
+                                <h5 class="name card-title">{{ el.name }}</h5>
+                            </a>
+                            <br>
+                            <p class="info card-text text-center">{{ el.info }}</p>
+                            <h4 class="price card-text text-center">{{ el.price }} ₽</h4>
+                            <a data-cart  class="shine-button"
+                               style="margin-bottom: 10px;align-items: flex-end;width: 125px; height: 42px">В
+                                коризну</a>
+                            <div class="d-grid gap-2"
+                                 style="position: absolute; bottom: 0; padding-bottom:10px; margin-left: 25%; display: block;">
+                            </div>
+                        </div>
+                         </form>
+                    </div>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            {% endfor %}
+        </div>
+    </main>
+
+    <div class="upbtn">
+        <a href="#top" id="anchButton"
+           style="text-align: center;font-size: 37px; font-weight: 150; margin-left: 40px">^</a>
+    </div>
+
+    <button class="btn btn-light btn-sm d-none" type="button" data-action="minus"><</button>
+    <button class="btn btn-light btn-sm d-none" type="button" data-counter>1</button>
+    <button class="btn btn-light btn-sm d-none" type="button" data-action="plus">></button>
+    <script src="{{ url_for('static', filename='total.js') }}"></script>
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <script src="{{ url_for('static', filename='counter.js') }}"></script>
+{% endblock %}

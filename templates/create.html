@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Добавление товаров
+{% endblock %}
+
+{% block body %}
+    {% if 'True' == current_user.is_admin %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+        <div class="container">
+            <h1>Добавление товара</h1>
+            <br>
+            <form method="post" enctype="multipart/form-data">
+                <input type="text" class="form-control" name="id" id="id" placeholder="Введите ID"><br>
+                <input type="text" class="form-control" name="kind" id="kind" placeholder="Введите тип"><br>
+                <input type="text" class="form-control" name="model" id="model" placeholder="Введите модель"><br>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Введите название"><br>
+                <input type="text" class="form-control" name="shortname" id="shortname"
+                       placeholder="Введите название для ссылки"><br>
+                <input type="text" class="form-control" name="color" id="color" placeholder="Введите цвет"><br>
+                <input type="text" class="form-control" name="info" id="info" placeholder="В наличии?"><br>
+                <input type="number" class="form-control" name="price" id="price" placeholder="Введите цену"><br>
+                <div class="dropdown-center">
+                    <button class="btn btn-light dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Выберите изображение
+                    </button>
+                    <ul class="dropdown-menu" style="width: 600px">
+                        <a onclick="document.getElementById('image').value='img/goods/airpods3.png'" type="dfdsf" value="Upffsdfload" data-action="plus"><img src="{{ url_for('static', filename='img/goods/airpods3.png') }}"
+                                                   style="width: 100px; height: 100px">
+                        </a>
+                        <a onclick="document.getElementById('image').value='img/goods/airpods_pro.png'"><img src="{{ url_for('static', filename='img/goods/airpods_pro.png') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/ipadpro21.jpg'"><img src="{{ url_for('static', filename='img/goods/ipadpro21.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/ipadpro22.jpg'"><img src="{{ url_for('static', filename='img/goods/ipadpro22.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/ipadpro22_silver.jpg'"><img src="{{ url_for('static', filename='img/goods/ipadpro22_silver.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/iphone13_blue.jpg'"><img src="{{ url_for('static', filename='img/goods/iphone13_blue.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/iphone13_night.jpg'"><img src="{{ url_for('static', filename='img/goods/iphone13_night.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/iphone_14_gold.jpg'"><img src="{{ url_for('static', filename='img/goods/iphone_14_gold.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/iphone_14_purple.jpg'"><img src="{{ url_for('static', filename='img/goods/iphone_14_purple.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/iphone_14_sivler.jpg'"><img src="{{ url_for('static', filename='img/goods/iphone_14_sivler.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/iphone14promax_black/iphone_14_black.jpg'"><img src="{{ url_for('static', filename='img/goods/iphone14promax_black/iphone_14_black.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/macair13.jpg'"><img src="{{ url_for('static', filename='img/goods/macair13.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/macair13_shine.jpg'"><img src="{{ url_for('static', filename='img/goods/macair13_shine.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/macpro16.jpg'"><img src="{{ url_for('static', filename='img/goods/macpro16.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/macpro16m1.jpg'"><img src="{{ url_for('static', filename='img/goods/macpro16m1.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/macpro16m1silver.jpg'"><img src="{{ url_for('static', filename='img/goods/macpro16m1silver.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+                        <a onclick="document.getElementById('image').value='img/goods/macpro16x2.jpg'"><img src="{{ url_for('static', filename='img/goods/macpro16x2.jpg') }}"
+                                style="width: 100px; height: 100px"></a>
+
+                    </ul>
+                </div>
+                <br>
+                <input type="text" class="form-control" name="image" id="image" placeholder="Изображение" value=""><br>
+                <br>
+                <button type="submit" value="Upload" class="btn btn-warning" type="submit">Добавить товар</button>
+            </form>
+        </div>
+    {% else %}
+        Ошибка
+    {% endif %}
+{% endblock %}

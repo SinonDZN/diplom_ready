@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Trade-in
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+    <div class="container after-good">
+        <img src="{{ url_for('static', filename='img/tradein/1.jpg') }}"
+             style="padding-bottom: 30px; margin-top: 30px;">
+        <div class="text">
+            <p class="text-left"><strong>Купить технику Apple в Trade-In</strong></p>
+        </div>
+        <br>
+        <div class="text6">
+            <p class="text-left"><img src="{{ url_for('static', filename='img/icons/2.png') }}"
+                                      style="height: 25px;width: 25px; margin-right: 3px"> Как проходит процесс обмена
+                техники по Trade-In?</p>
+        </div>
+
+        <div class="text7">
+            <p class="text-left"><strong>1. Вы звоните нам в магазин: +7 (495) 000-00-00
+            </strong></p>
+        </div>
+
+        <div class="text7">
+            <p class="text-left"><strong>2. Сообщаете информацию о вашем старом устройстве Apple:
+            </strong></p>
+        </div>
+
+        <div class="text8">
+            <p class="text-left"><strong>- Какая модель, объем памяти, цвет;
+            </strong></p>
+        </div>
+
+        <div class="text8">
+            <p class="text-left"><strong>- Полный ли комплект, сохранились ли оригинальная коробка, зарядное устройство;
+            </strong></p>
+        </div>
+
+        <div class="text8">
+            <p class="text-left"><strong>- Как давно был куплен, работает ли еще гарантия;
+            </strong></p>
+        </div>
+
+        <div class="text8">
+            <p class="text-left"><strong>- В каком состоянии: есть ли сколы, повреждения, царапины.
+            </strong></p>
+        </div>
+
+        <div class="text7">
+            <p class="text-left"><strong>3. Далее мы перезваниваем через 15-20 минут и говорим предварительную цену на
+                ваше устройство по Trade-in.
+            </strong></p>
+        </div>
+
+        <div class="text7">
+            <p class="text-left"><strong>4. Вы приходите к нам в магазин, мы производим осмотр вашего устройства и
+                называем конечную цену по Trade-in.
+            </strong></p>
+        </div>
+
+        <div class="text7">
+            <p class="text-left"><strong>5. Если цена устраивает - мы переносим данные на новое устройство, старое возвращаем к заводским настройкам.
+            </strong></p>
+        </div>
+
+        <div class="text7">
+            <p class="text-left"><strong>6. Мы забираем старую технику. Остаток за новое устройство вы можете оплатить
+                наличными либо переводом.
+            </strong></p>
+        </div>
+
+        <br>
+
+        <div class="text7">
+            <p class="text-left"><strong>У нас цена по Trade-in выгоднее в среднем на 5-10% чем у конкурентов.</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="upbtn">
+        <a href="#top" id="anchButton"
+           style="text-align: center;font-size: 37px; font-weight: 150; margin-left: 40px">^</a>
+    </div>
+{% endblock %}

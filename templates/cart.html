@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Корзина
+{% endblock %}
+{% block body %}
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+    <div class="container">
+        <div class="text">
+            <p class="text-left"><strong><img src="{{ url_for('static', filename='img/icons/cart.png') }}"
+                                              style="height: 40px;width: 40px; margin-right: 3px; margin-bottom: 5px">
+                Корзина</strong></p>
+        </div>
+
+        <div class="item">
+            <div class="card mb-3" style="max-width: 740px;margin-left: 50px; height:150px">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="{{ url_for('static', filename='img/goods/iphone_14_purple.jpg') }}"
+                             style="height: 140px; width: 140px; margin-left: 31px; margin-top: 5px"
+                             class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">MacBook Pro 16" (M2, 2022) 16 ГБ, 512 ГБ SSD, "полуночный
+                                космос"</h5>
+                            <p class="card-text" style="font-size: 17px; font-weight: 500">125000 ₽</p>
+                            <p class="card-text2" style="font-size: 17px; font-weight: 500;">< 1 ></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text4">
+            <p class="text-left" style="margin-left: 51px; margin-top: 30px"><strong>Итого: 125000 ₽</strong></p>
+        </div>
+        <button class="shine-button"
+                style="width: 300px; height: 42px; margin-top: 20px; padding-top: 4px; margin-left: 51px"
+                type="submit">
+            Перейти к оформлению
+        </button>
+        </main>
+    </div>
+{% endblock %}

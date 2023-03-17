@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная
+
+{% endblock %}
+
+{% block body %}
+
+    <script src="{{ url_for('static', filename='java_funcs.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+    <div nope class="alert alert-danger alert-dismissible d-none" role="alert" style="position: fixed; z-index: 999999;left: 43%; top: 90%">
+        <div>Товар уже в корзине!</div>
+    <button clsbtn1 type="button" class="btn-close"  style=""></button>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="/goods/macbooks/mac1622_silver"> <img
+                        src="{{ url_for('static', filename='img/222v2.png') }}"
+                        class="d-block w-100" alt="..."></a>
+            </div>
+            <div class="carousel-item">
+                <a href="/goods/airpods/airpodsprov2/"><img src="{{ url_for('static', filename='img/333v2.png') }}"
+                                                            class="d-block w-100" alt="..."></a>
+            </div>
+            <div class="carousel-item">
+                <a href="/goods/iphones/iphone14promax_purple/"><img
+                        src="{{ url_for('static', filename='img/111v3.png') }}"
+                        class="d-block w-100"
+                        alt="..."></a>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+    </div>
+    <br>
+    <div class="text">
+        <p class="text-center"><strong>Весь ассортимент</strong></p>
+    </div>
+    <div alerta class="alert alert-success alert-dismissible d-none" role="alert"
+         style="position: fixed; z-index: 999999;left: 42%; top: 90%">
+        <div>Товар добавлен в корзину!</div>
+        <button clsbtn2 type="button" class="btn-close"  style=""></button>
+    </div>
+    <br>
+    <div class="text">
+        <p class="text-center"><strong>{{ users.login }}</strong></p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-6 g-1 offset-md-1" style="margin-left: 170px">
+        {% for el in data %}
+            {% if el.image.startswith('[') %}
+                {% set list1 = el.image.split(', ') %}
+                {% set img = list1[0] %}
+            {% else %}
+                {% set img = el.image %}
+            {% endif %}
+            <div class="col">
+                <div class="card h-100 d-flex align-items-stretch"
+                     style="position: relative; padding-bottom:1px; height: 10px;">
+                    <form method="GET">
+                        <a href="/goods/{{ el.kind }}/{{ el.shortname }}/"> <img src="{{ url_for('static', filename=img
+                    ) }}" class="img card-img-top" alt="..."></a>
+                        <div class="card-body text-center">
+                            <a href="/goods/{{ el.kind }}/{{ el.shortname }}/"
+                               style="text-decoration: none; color: black;">
+                                <h5 class="name card-title">{{ el.name }}</h5></a>
+                            <br>
+                            <p class="info card-text text-center">{{ el.info }}</p>
+                            <h4 class="price card-text text-center">{{ el.price }} ₽</h4>
+                            <a data-cart class="shine-button"  id="onetime"
+                               data-action="add"
+                               style="margin-bottom: 10px;align-items: flex-end;vertical-align: bottom; width: 125px; height: 42px">В
+                                корзину</a>
+                            {% if 'True' == current_user.is_admin %}
+                            <a data-cart class="shine-button" href="/{{ el.id }}/del"
+                               style="margin-bottom: 10px;align-items: flex-end;vertical-align: bottom; width: 125px; height: 42px">Удалить товар</a>
+                            {% endif %}
+                            <div class="d-grid gap-2"
+                                 style="position: absolute; bottom: 0; padding-bottom:10px; margin-left: 25%; display: block;">
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            </form>
+        {% endfor %}
+    </div>
+    <div class="upbtn">
+        <a href="#top" id="anchButton"
+           style="text-align: center;font-size: 37px; font-weight: 150; margin-left: 40px">^</a>
+    </div>
+    <div class="alert alert-success alert-dismissible d-none" role="alert"
+         style="position: fixed; z-index: 999999; ">
+        <div>Товар добавлен в корзину!</div>
+        <button type="button"  data-bs-dismiss="alert" aria-label="Close" style=""></button>
+    </div>
+    <button class="btn btn-light btn-sm d-none" type="button" data-action="minus"><</button>
+    <button class="data-counter btn btn-light btn-sm d-none" type="button" data-counter="">1</button>
+    <button class="btn btn-light btn-sm d-none" type="button" data-action="plus">></button>
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery-1.9.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='save.js') }}"></script>
+    <script src="{{ url_for('static', filename='total.js') }}"></script>
+    <script src="{{ url_for('static', filename='counter.js') }}"></script>
+
+{% endblock %}

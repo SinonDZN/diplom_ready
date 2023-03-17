@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Удаление аккаунта
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h3 class="text" style="font-size: 45px">Вы точно хотите удалить аккаунт?</h3>
+            <p class="lead text-muted" style="font-weight: 450">Данное действие нельзя будет отменить</p>
+            <p>
+                <a href="/delete/confirm" class="shine-button">Подтвердить</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

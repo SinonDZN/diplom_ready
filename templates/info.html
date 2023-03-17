@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Контакты
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptive.css') }}">
+    <div class="container after-good">
+        <div class="text">
+            <p class="text-left"><strong>Контакты</strong></p>
+        </div>
+
+        <br>
+        <div class="text3">
+            <p class="text-left"><strong>Номер телефона по любым вопросам:</strong></p>
+        </div>
+
+        <div class="text4">
+            <p class="text-left"><strong><img src="{{ url_for('static', filename='img/icons/1.png') }}" style="height: 20px;width: 20px; margin-right: 3px"> +7 (495) 000-00-00</strong></p>
+        </div>
+
+        <div class="text5">
+            <p class="text-left"><strong>9:00 - 22:00 по НСК</strong></p>
+        </div>
+        <div class="text">
+            <p class="text-left"><strong>Адреса наших магазинов</strong></p>
+        </div>
+
+        <div class="text2">
+            <p class="text-left"><strong>улица Кропоткина, 120/3, 2 этаж.</strong></p>
+        </div>
+
+        <div class="text3">
+            <p class="text-left"><strong>Ежедневно 9:00 - 22:00</strong></p>
+        </div>
+
+        <img src="{{ url_for('static', filename='img/map/map2.png') }}">
+        <br>
+        <br>
+        <div style="position:relative;overflow:hidden;"><a
+                href="https://yandex.ru/maps/65/novosibirsk/?utm_medium=mapframe&utm_source=maps"
+                style="color:#eee;font-size:12px;position:absolute;top:0px;">Новосибирск</a><a
+                href="https://yandex.ru/maps/65/novosibirsk/house/ulitsa_kropotkina_120_3/bEsYfwRhS0MEQFtvfXx0d31hZA==/?indoorLevel=1&ll=82.935455%2C55.057204&utm_medium=mapframe&utm_source=maps&z=17.48"
+                style="color:#eee;font-size:12px;position:absolute;top:14px;">Улица Кропоткина, 120/3 — Яндекс Карты</a>
+            <iframe src="https://yandex.ru/map-widget/v1/?indoorLevel=1&ll=82.935455%2C55.057204&mode=whatshere&whatshere%5Bpoint%5D=82.930974%2C55.056109&whatshere%5Bzoom%5D=17&z=17.48"
+                    width="950" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+        </div>
+    </div>
+
+    <div class="upbtn">
+        <a href="#top" id="anchButton" style="text-align: center;font-size: 37px; font-weight: 150; margin-left: 40px">^</a>
+    </div>
+{% endblock %}
